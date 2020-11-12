@@ -1,6 +1,6 @@
 FROM node:15.2.0-alpine
 
-WORKDIR /app
+WORKDIR /
 
 COPY package.json ./
 COPY package-lock.json ./
