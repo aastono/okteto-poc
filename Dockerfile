@@ -1,13 +1,14 @@
 FROM node:15.2.0-alpine
 
+WORKDIR /usr/src/app
+
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm run build
+RUN npm install
 
-COPY . ./
+COPY . .
 
 EXPOSE 3000
 
-# start app
 CMD ["npm", "start"]
