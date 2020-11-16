@@ -1,5 +1,8 @@
+icon: https://apps.okteto.com/movies/icon.png
 deploy:
-  - okteto build -t okteto.dev/okteto-poc:latest
-  - kubectl apply -f k8s
+  - okteto build -t okteto.dev/api:${OKTETO_GIT_COMMIT} api
+  - okteto build -t okteto.dev/frontend:${OKTETO_GIT_COMMIT} frontend
+  - helm upgrade --install movies chart --set tag=${OKTETO_GIT_COMMIT}
 devs:
-  - okteto.yml
+  - api/okteto.yml
+  - frontend/okteto.yml
