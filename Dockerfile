@@ -17,6 +17,6 @@ COPY --from=build /build /build
 COPY --from=build /node_modules /node_modules
 COPY --from=build /server.js .
 
-EXPOSE 3000
+EXPOSE 1234
 
 CMD ["node", "./server.js"]

@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const log = require('llog');
 
-const port = 3000;
+const port = 1234;
 
 app.use(express.static(path.join(__dirname, 'build')));
 

@@ -7,5 +7,7 @@ spec:
   ports:
     - name: http
       port: 3000
+      targetPort: 1234
+      protocol: TCP
   selector:
     app: okteto-poc
