@@ -1,18 +1,20 @@
-FROM node:15.2.0-alpine AS ui-build
+FROM node:10-alpine AS build
 
-WORKDIR /usr/src/app
+COPY package.json ./
+COPY package-lock.json ./
 
-COPY src/ ./src/
-RUN cd src && npm install && npm run build
+COPY . .
 
+RUN npm ci
 
+RUN npm run build
 
-FROM node:15.2.0-alpine AS server-build
+FROM node:10-alpine
 
-WORKDIR /root/
-
-COPY --from=ui-build /usr/src/app/src/build ./src/build
+COPY --from=build /build /build
+COPY --from=build /node_modules /node_modules
+COPY --from=build /server.js .
 
 EXPOSE 8080
 
-CMD ["node", "./server.js"]
+CMD ["node", "./express.js"]
