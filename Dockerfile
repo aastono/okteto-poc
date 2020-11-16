@@ -5,7 +5,7 @@ WORKDIR /
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm install -g npm@7.0.11
+RUN npm cache clean --force
 
 RUN npm install
 
