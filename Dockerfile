@@ -13,9 +13,6 @@ WORKDIR /root/
 
 COPY --from=ui-build /usr/src/app/src/build ./src/build
 
-COPY src/package*.json ./src/
-COPY src/server.js ./src/
-
 EXPOSE 8080
 
 CMD ["node", "./server.js"]
